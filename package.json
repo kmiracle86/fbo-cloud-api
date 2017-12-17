@@ -1,0 +1,26 @@
+{
+  "name": "fbo-cloud",
+  "version": "0.0.1",
+  "description": "FBO Flight Scheduling and Aircraft Management",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.*,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/server.js"
+  },
+  "author": "Kyle Miracle",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7",
+    "restify": "^6.3.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "rimraf": "^2.6.2"
+  }
+}

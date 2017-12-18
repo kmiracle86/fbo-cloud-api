@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt';
 
 const { Schema } = mongoose;
 
-// Schema defines how the user data will be stored in MongoDB
 const UserSchema = new Schema({
   email: {
     type: String,

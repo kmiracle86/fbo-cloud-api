@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-// Schema defines how the user data will be stored in MongoDB
 const AircraftSchema = new Schema({
   registration: String,
   description: String,

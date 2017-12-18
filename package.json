@@ -6,17 +6,24 @@
   "scripts": {
     "test": "npm run test",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.*,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/server.js"
+    "start": "npm run build && node dist/server.js",
+    "dev": "nodemon --delay 1 --ignore dist/ --exec npm start"
   },
   "author": "Kyle Miracle",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "express": "^4.16.2",
+    "express-validator": "^4.3.0",
+    "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.13.7",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
     "restify": "^6.3.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",

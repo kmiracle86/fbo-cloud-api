@@ -71,7 +71,7 @@ const createToken = ({ User }) => (req, res, next) =>
 
 
 export default (server, basePath, models) => {
-  server.get(`${basePath}/user`, getAll(models), response);
-  server.post(`${basePath}/user`, validator.createUser, check, create(models), response);
+  server.get(`${basePath}/users`, getAll(models), response);
+  server.post(`${basePath}/users`, validator.createUser, check, create(models), response);
   server.post(`${basePath}/token`, validator.createToken, check, createToken(models), response);
 };

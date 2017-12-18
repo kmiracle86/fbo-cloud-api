@@ -38,6 +38,9 @@ const seedAirports = () => {
       name: `${faker.address.county()} County Airport`,
       city: faker.address.city(),
       state: faker.address.state(),
+      iata: faker.helpers.replaceSymbols('???'),
+      icao: `k${faker.random.alphaNumeric(3)}`,
+      lid: faker.helpers.replaceSymbols('???'),
     });
     return newAirport.save();
   });

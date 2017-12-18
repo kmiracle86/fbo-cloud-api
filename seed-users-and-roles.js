@@ -85,7 +85,6 @@ prompt.colors = true;
 prompt.get({
   properties: {
     confirm: {
-      // allow yes, no, y, n, YES, NO, Y, N as answer
       pattern: /^(yes|no|y|n)$/gi,
       description: 'This command will remove all Users and Roles from the db. Are you sure?',
       message: 'Type yes/no',

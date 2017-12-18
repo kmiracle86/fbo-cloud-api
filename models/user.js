@@ -10,13 +10,17 @@ const UserSchema = new Schema({
     unique: true,
     required: true
   },
+  firstName: String,
+  middleName: String,
+  lastName: String,
   password: {
     type: String,
     required: true
   },
   role: {
     type: Schema.Types.ObjectId,
-    ref: 'Role'
+    ref: 'Role',
+    required: true,
   },
   created: {
     type: Date,

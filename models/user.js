@@ -57,7 +57,12 @@ UserSchema.pre('save', function saveCB(next) {
 });
 
 UserSchema.methods.toJSON = function toJSON() {
-  return ({ id: this._id, email: this.email, role: this.role });
+  return ({
+    id: this._id,
+    email: this.email,
+    role: this.role,
+    created: this.created,
+  });
 };
 
 UserSchema.methods.comparePassword = function comparePassword(pw) {

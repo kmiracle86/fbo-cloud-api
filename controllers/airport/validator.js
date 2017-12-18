@@ -13,4 +13,16 @@ export const createAirport = [
   check('state')
     .exists()
     .withMessage('state is required'),
+
+  check('icao')
+    .exists()
+    .withMessage('icao is required and must be unique'),
+
+  check('iata')
+    .exists()
+    .withMessage('iata is required and must be unique'),
+
+  check('lid')
+    .exists()
+    .withMessage('lid is required and must be unique'),
 ];

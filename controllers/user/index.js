@@ -16,12 +16,19 @@ const create = ({ User }) => (req, res, next) => {
     .then(user => {
       res.success = true;
       res.data = user;
+      res.status(201);
       next();
     })
     .catch(err => {
       res.success = false;
+      if (err.code === 11000) {
+        res.status(409);
+        res.message = 'User already exists';
+      } else {
+        res.status(500);
+        res.message = `Unknown error ${err.code || ''}. Unable to save user`;
+      }
       res.errors = err.errors; // Probably don't want to do this
-      res.message = err.code === 11000 ? 'User already exists' : `Unknown error ${err.code || ''}. Unable to save user`;
       next();
     });
 };

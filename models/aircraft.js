@@ -15,7 +15,7 @@ const AircraftSchema = new Schema({
     required: true,
   },
   rate: {
-    type: Schema.Types.Decimal,
+    type: Number,
     required: true,
   },
   registration: {
@@ -38,6 +38,21 @@ const AircraftSchema = new Schema({
     default: Date.now,
   },
 });
+
+AircraftSchema.methods.toJSON = function toJSON() {
+  return ({
+    id: this._id,
+    base: this.base,
+    color: this.color,
+    description: this.description,
+    manufacturer: this.manufacturer,
+    rate: this.rate,
+    registration: this.registration,
+    type: this.type,
+    created: this.created,
+  });
+};
+
 
 AircraftSchema.pre('save', function saveCB(next) {
   if (!this.isNew) {

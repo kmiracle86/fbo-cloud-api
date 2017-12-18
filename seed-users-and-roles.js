@@ -19,7 +19,7 @@ const seedAircraft = airports => {
       color: faker.commerce.color(),
       description: faker.lorem.paragraph(),
       manufacturer: faker.company.companyName(),
-      rate: faker.commerce.price(),
+      rate: `${faker.random.number(500)}.99`,
       registration: faker.random.alphaNumeric(5),
       type: faker.random.alphaNumeric(4),
     });

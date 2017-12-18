@@ -9,16 +9,19 @@ const AirportSchema = new Schema({
     type: String,
     required: true,
     lowercase: true,
+    unique: true,
   },
   icao: {
     type: String,
     required: true,
     lowercase: true,
+    unique: true,
   },
   lid: {
     type: String,
     required: true,
     lowercase: true,
+    unique: true,
   },
   name: {
     type: String,

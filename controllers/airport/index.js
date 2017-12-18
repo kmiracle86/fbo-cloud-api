@@ -8,12 +8,19 @@ const create = ({ Airport }) => (req, res, next) => {
     .then(airport => {
       res.success = true;
       res.data = airport;
+      res.status(201);
       next();
     })
     .catch(err => {
       res.success = false;
       res.errors = err.errors; // Probably don't want to do this
-      res.message = `Unknown error ${err.code || ''}. Unable to save airport`;
+      if (err.code === 11000) {
+        res.status(409);
+        res.message = 'Airport already exists';
+      } else {
+        res.status(500);
+        res.message = `Unknown error ${err.code || ''}. Unable to save airport`;
+      }
       next();
     });
 };
@@ -27,6 +34,7 @@ const getAll = ({ Airport }) => (_, res, next) =>
     })
     .catch(() => {
       res.success = false;
+      res.status(500);
       next();
     });
 

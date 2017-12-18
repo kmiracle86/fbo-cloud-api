@@ -14,6 +14,9 @@ export const createUser = [
     .withMessage('must be at least 5 characters')
     .matches(/\d/)
     .withMessage('must contain a number'),
+
+  check('role', 'role is required')
+    .exists(),
 ];
 
 export const createToken = [

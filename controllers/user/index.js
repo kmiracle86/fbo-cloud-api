@@ -5,10 +5,11 @@ import config from '../../config';
 
 
 const create = ({ User }) => (req, res, next) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
   const newUser = new User({
     email,
     password,
+    role,
   });
 
   return newUser.save()
@@ -19,13 +20,15 @@ const create = ({ User }) => (req, res, next) => {
     })
     .catch(err => {
       res.success = false;
-      res.message = err.code === 11000 ? 'User already exists' : `Unknown error ${err.code}. Unable to save user`;
+      res.errors = err.errors; // Probably don't want to do this
+      res.message = err.code === 11000 ? 'User already exists' : `Unknown error ${err.code || ''}. Unable to save user`;
       next();
     });
 };
 
 const getAll = ({ User }) => (_, res, next) =>
   User.find({})
+    .populate({ path: 'role' })
     .then(users => {
       res.success = true;
       res.data = users;

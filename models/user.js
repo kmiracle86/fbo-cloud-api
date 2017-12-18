@@ -13,10 +13,26 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  role: {
+    type: Schema.Types.ObjectId,
+    ref: 'Role'
+  },
+  created: {
+    type: Date,
+    default: Date.now,
+  },
+  modified: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 UserSchema.pre('save', function saveCB(next) {
+  if (!this.isNew) {
+    this.modified = new Date();
+  }
+
   if (!this.isModified('password') && !this.isNew) {
     next();
   }
@@ -37,7 +53,7 @@ UserSchema.pre('save', function saveCB(next) {
 });
 
 UserSchema.methods.toJSON = function toJSON() {
-  return ({ id: this._id, email: this.email });
+  return ({ id: this._id, email: this.email, role: this.role });
 };
 
 UserSchema.methods.comparePassword = function comparePassword(pw) {

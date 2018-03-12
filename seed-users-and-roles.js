@@ -13,15 +13,15 @@ import config from './config';
 
 const seedAircraft = airports => {
   console.log('Seeding Aircraft');
-  const promises = [...Array(5).keys()].map(i => {
+  const promises = [...Array(6).keys()].map(i => {
     const newAircraft = new Aircraft({
       base: airports[i],
       color: faker.commerce.color(),
-      description: faker.lorem.paragraph(),
+      description: faker.lorem.paragraphs(4),
       manufacturer: faker.company.companyName(),
       rate: `${faker.random.number(500)}.99`,
       registration: faker.random.alphaNumeric(5),
-      type: faker.random.alphaNumeric(4),
+      type: `201${faker.random.number(9)} C-172 S`,
     });
     return newAircraft.save();
   });
@@ -33,7 +33,7 @@ const seedAircraft = airports => {
 
 const seedAirports = () => {
   console.log('Seeding Airports');
-  const promises = [...Array(5).keys()].map(() => {
+  const promises = [...Array(6).keys()].map(() => {
     const newAirport = new Airport({
       name: `${faker.address.county()} County Airport`,
       city: faker.address.city(),

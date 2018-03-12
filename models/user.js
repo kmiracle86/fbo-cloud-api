@@ -58,6 +58,7 @@ UserSchema.pre('save', function saveCB(next) {
 
 UserSchema.methods.toJSON = function toJSON() {
   return ({
+    displayName: `${this.firstName} ${this.lastName}`,
     id: this._id,
     email: this.email,
     role: this.role,
